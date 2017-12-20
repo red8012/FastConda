@@ -57,7 +57,7 @@ docker commit t1 test/intel
 docker rm -f t1
 
 # run benchmarks
-for round in {1..1}
+for round in {0..1}
 do
     for target in alpine optimizedconda official revsys miniconda intel
     do

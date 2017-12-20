@@ -1,5 +1,5 @@
 TARGETS = ['alpine', 'optimizedconda', 'official', 'revsys', 'miniconda', 'intel']
-N_ROUNDS = 1
+N_ROUNDS = 2
 
 result1 = {target: [] for target in TARGETS}
 result2 = {target: [] for target in TARGETS}
@@ -19,7 +19,7 @@ for target in TARGETS:
 
 with open('result1.csv', 'w') as f:
     for target in TARGETS:
-        f.write(f'{target},{",".join(str(i) for i in result1[target])}')
+        f.write(f'{target},{",".join(str(i) for i in result1[target])}\n')
 with open('result2.csv', 'w') as f:
     for target in TARGETS:
-        f.write(f'{target},{",".join(str(i) for i in result2[target])}')
+        f.write(f'{target},{",".join(str(i) for i in result2[target])}\n')
