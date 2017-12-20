@@ -16,9 +16,9 @@ for target in TARGETS:
         result1[target].append(django1_time)
         result2[target].append(django2_time)
 
-with open('result1.txt', 'w') as f:
+with open('result1.csv', 'w') as f:
     for target in TARGETS:
         f.write(f'{target},{",".join(str(i) for i in result1[target])}')
-with open('result2.txt', 'w') as f:
+with open('result2.csv', 'w') as f:
     for target in TARGETS:
         f.write(f'{target},{",".join(str(i) for i in result2[target])}')
