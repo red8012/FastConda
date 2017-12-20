@@ -1,3 +1,4 @@
+#!/bin/bash
 # clone django source
 git clone git://github.com/django/django.git
 git clone --depth 1 git://github.com/django/djangobench.git
@@ -65,3 +66,14 @@ do
         docker rm -f t1
     done
 done
+
+# collect result
+cd django
+wget https://github.com/red8012/OptimizedConda/raw/master/aggregateBenchmarkResult.py
+docker run -ti -v ~/django:/django --name t1 test/optimizedconda bash -c "cd django && python aggregateBenchmarkResult.py"
+docker rm -f t1
+echo ============= Django 1.11 =============
+cat result1.csv
+echo
+echo ============= Django 2.0 =============
+cat result2.csv
