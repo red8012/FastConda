@@ -12,14 +12,14 @@ docker exec t1 pip install /djangobench
 docker commit t1 test/alpine
 docker rm -f t1
 
-# create optimizedconda image
-docker pull red8012/optimizedconda
-docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench -v /usr/share/zoneinfo:/zoneinfo --name t1 red8012/optimizedconda
+# create fastconda image
+docker pull red8012/fastconda
+docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench -v /usr/share/zoneinfo:/zoneinfo --name t1 red8012/fastconda
 docker exec t1 swupd bundle-add rust-basic
 docker exec t1 pip install Django==2.0
 docker exec t1 pip install /djangobench
 docker exec t1 cp -r /zoneinfo/America /usr/share/zoneinfo
-docker commit t1 test/optimizedconda
+docker commit t1 test/fastconda
 docker rm -f t1
 
 # create official image
@@ -59,7 +59,7 @@ docker rm -f t1
 # run benchmarks
 for round in {0..1}
 do
-    for target in alpine optimizedconda official revsys miniconda intel
+    for target in alpine fastconda official revsys miniconda intel
     do
         echo benchmarking $target round $round
         docker run -ti -v ~/django:/django --name t1 test/$target bash -c "cd django && djangobench --control=1.11 --experiment=2.0 > $target-$round.txt"
@@ -70,7 +70,7 @@ done
 # collect result
 cd django
 wget https://github.com/red8012/OptimizedConda/raw/master/aggregateBenchmarkResult.py
-docker run -ti -v ~/django:/django --name t1 test/optimizedconda bash -c "cd django && python aggregateBenchmarkResult.py"
+docker run -ti -v ~/django:/django --name t1 test/fastconda bash -c "cd django && python aggregateBenchmarkResult.py"
 docker rm -f t1
 echo ============= Django 1.11 =============
 cat result1.csv
