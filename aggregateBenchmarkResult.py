@@ -1,4 +1,4 @@
-TARGETS = ['alpine', 'optimizedconda', 'official', 'revsys', 'miniconda', 'intel']
+TARGETS = ['alpine', 'fastconda', 'official', 'revsys', 'miniconda', 'intel']
 N_ROUNDS = 2
 
 result1 = {target: [] for target in TARGETS}
