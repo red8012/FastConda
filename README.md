@@ -35,15 +35,27 @@ wget https://github.com/red8012/FastConda/raw/master/benchmark.sh && bash benchm
 
 [Djangobench](https://github.com/django/djangobench) was chosen because it is closer to the way "normal people" using Python with mixed workload. Here is the result of 6-way benchmark of different Python images.
 
-Environment:
+### Competitors 
 
-* 1 vCPU
-* 512 MB memory
-* CoreOS Container Linux
+* [Intel Distribution for Python](https://software.intel.com/en-us/articles/docker-images-for-intel-python)
+* [Miniconda](https://hub.docker.com/r/continuumio/miniconda3/)
+* [REVSYS Optimized Python](https://www.revsys.com/tidbits/optimized-python/)
+* [Official Python Images](https://hub.docker.com/_/python/) (including Alpine tag)
 
-**WIP**
+### Result
 
-Note: I run this benchmark on [dply](https://dply.co)'s free 2-hour VM, which is essentially a $5 droplet from DigitalOcean. Although I ran it multiple times then take the average, it seems that the result is not very stable (possibly caused by the *noisy neighbors* of the VM). You can run benchmark in a well-controlled environment to get an idea of how this image perform. 
+![Result](plot.png)
+
+Note: I ran this benchmark on [dply](https://dply.co)'s free 2-hour VM, which is essentially a $5 droplet from DigitalOcean (1 vCPU, 512 MB memory, CoreOS Container Linux).  Although I ran it multiple times and took the average, it seems that the result is not very stable (possibly caused by the noisy neighbors of the VM). You can run benchmark in a well-controlled environment to get an idea of how this image perform on your system. 
+
+### Conclusion
+
+* FastConda image is the fastest (at least in this Djangobench benchmark). 
+* Miniconda is also a good performer. 
+* Revsys build is good, but not very impressive.
+* Intel image seems NOT optimized for generic Python workload. Use it only if you are doing intensive numerical computation (e.g. in NumPy or Scikit-Learn).
+* Use Alpine image if size is more concerned than performance.
+* Use official image if you have compatibility issues.
 
 ## Image Size
 
