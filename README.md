@@ -1,6 +1,8 @@
 # FastConda
 High performance Miniconda (Python 3) image for docker that runs ~20% faster than the official image
 
+![build status](https://img.shields.io/docker/build/red8012/fastconda.svg)
+
 ## TL;DR
 
 It is a docker image that runs **even faster** than the ["optimized" Python builds](https://github.com/revsys/optimized-python-docker). Use [red8012/fastconda](https://hub.docker.com/r/red8012/fastconda/) as a replacement to the official Python image or Miniconda image.
