@@ -1,5 +1,5 @@
 # FastConda
-High performance Miniconda (Python 3) image for docker
+High performance Miniconda (Python 3) image for docker that runs ~20% faster than the official image
 
 ## TL;DR
 
