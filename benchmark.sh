@@ -7,8 +7,8 @@ git clone --depth 1 git://github.com/django/djangobench.git
 docker pull python:3-alpine
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench --name t1 python:3-alpine
 docker exec t1 apk add --no-cache bash git
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker commit t1 test/alpine
 docker rm -f t1
 
@@ -16,8 +16,8 @@ docker rm -f t1
 docker pull red8012/fastconda
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench -v /usr/share/zoneinfo:/zoneinfo --name t1 red8012/fastconda
 docker exec t1 swupd bundle-add rust-basic
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker exec t1 cp -r /zoneinfo/America /usr/share/zoneinfo
 docker commit t1 test/fastconda
 docker rm -f t1
@@ -25,16 +25,16 @@ docker rm -f t1
 # create official image
 docker pull python:3
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench --name t1 python:3
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker commit t1 test/official
 docker rm -f t1
 
 # create revsys
-docker pull revolutionsystems/python:3.6.3-wee-optimized-lto
+docker pull revolutionsystems/python:3.7.1-wee-optimized-lto
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench --name t1 revolutionsystems/python:3.6.3-wee-optimized-lto
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker commit t1 test/revsys
 docker rm -f t1
 
@@ -42,17 +42,17 @@ docker rm -f t1
 docker pull continuumio/miniconda3
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench --name t1 continuumio/miniconda3
 docker exec t1 conda upgrade python -y
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker commit t1 test/miniconda
 docker rm -f t1
 
 # create intel
-docker pull intelpython/intelpython3_core:2018.0.1
+docker pull intelpython/intelpython3_core:2019.0
 docker run -tdi -v ~/django:/django -v ~/djangobench:/djangobench --name t1 intelpython/intelpython3_core:2018.0.1
 docker exec t1 conda upgrade python -y
-docker exec t1 pip install Django==2.0
-docker exec t1 pip install /djangobench
+docker exec t1 pip install Django==2.1.3
+docker exec t1 pip install git+git://github.com/django/djangobench.git
 docker commit t1 test/intel
 docker rm -f t1
 
@@ -75,5 +75,5 @@ docker rm -f t1
 echo ============= Django 1.11 =============
 cat result1.csv
 echo
-echo ============= Django 2.0 =============
+echo ============= Django 2.1.3 =============
 cat result2.csv
