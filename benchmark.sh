@@ -69,7 +69,7 @@ done
 
 # collect result
 cd django
-wget https://github.com/red8012/OptimizedConda/raw/master/aggregateBenchmarkResult.py
+wget https://github.com/red8012/FastConda/raw/master/aggregateBenchmarkResult.py
 docker run -ti -v ~/django:/django --name t1 test/fastconda bash -c "cd django && python aggregateBenchmarkResult.py"
 docker rm -f t1
 echo ============= Django 1.11 =============
